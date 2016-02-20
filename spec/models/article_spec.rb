@@ -1,5 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Article, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "taggable" do
+    it "allows tags to be added" do
+      article = Article.create!(title: 'test')
+      article.tag!("foo")
+      expect(article.tags.count).to eq(1)
+      expect(article.tags.first.name).to eq("foo")
+    end
+  end
 end
