@@ -30,7 +30,7 @@ RSpec.describe StatsController, :type => :controller do
       article = Article.create!
       article.tag!(%w(a b c ))
 
-      get :show, entity_type: 'Article', entity_id: article.id
+      get :show, params: { entity_type: 'Article', entity_id: article.id }
       expect(response).to be_success
       expect(JSON.parse(response.body)).to match_array([
         { "tag" => "a", "count" => 1 },
