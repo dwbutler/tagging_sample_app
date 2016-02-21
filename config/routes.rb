@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   post '/tags/:entity_type/:entity_id' => "tags#create"
   get '/tags/:entity_type/:entity_id' => "tags#show"
   delete '/tags/:entity_type/:entity_id' => "tags#destroy"
+
+  get '/stats' => "stats#index"
 end
