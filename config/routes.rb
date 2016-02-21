@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   # mount ActionCable.server => '/cable'
 
   post '/tags/:entity_type/:entity_id' => "tags#create"
+  get '/tags/:entity_type/:entity_id' => "tags#show"
   delete '/tags/:entity_type/:entity_id' => "tags#destroy"
 end
