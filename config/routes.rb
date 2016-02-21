@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   delete '/tags/:entity_type/:entity_id' => "tags#destroy"
 
   get '/stats' => "stats#index"
+  get '/status/:entity_type/:entity_id' => "stats#show"
 end

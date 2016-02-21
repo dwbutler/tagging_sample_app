@@ -24,4 +24,19 @@ RSpec.describe StatsController, :type => :controller do
       expect(JSON.parse(response.body)).to eq([])
     end
   end
+
+  describe "GET #show" do
+    it "returns tags and counts for a single entity" do
+      article = Article.create!
+      article.tag!(%w(a b c ))
+
+      get :show, entity_type: 'Article', entity_id: article.id
+      expect(response).to be_success
+      expect(JSON.parse(response.body)).to match_array([
+        { "tag" => "a", "count" => 1 },
+        { "tag" => "b", "count" => 1 },
+        { "tag" => "c", "count" => 1 }
+      ])
+    end
+  end
 end
