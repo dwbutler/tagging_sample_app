@@ -20,4 +20,21 @@ RSpec.describe TagsController, :type => :controller do
       expect(article.reload.tag_list).to match_array(%w(foo bar))
     end
   end
+
+  describe "DELETE #destroy" do
+    it "deletes an existing entity and its tags" do
+      article = Article.create!
+      article.tag!(%w(a b))
+      delete :destroy, entity_type: 'Article', entity_id: article.id
+      expect(response).to be_no_content
+
+      expect(Article.count).to eq(0)
+      expect(Tag.count).to eq(0)
+    end
+
+    it "returns Not Found if the entity does not exist" do
+      delete :destroy, entity_type: 'Article', entity_id: -1
+      expect(response).to be_not_found
+    end
+  end
 end

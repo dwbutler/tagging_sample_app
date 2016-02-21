@@ -5,6 +5,12 @@ class TagsController < ApplicationController
     render json: @entity
   end
 
+  def destroy
+    @entity = entity_type.find(entity_id)
+    @entity.destroy
+    head :no_content
+  end
+
   private
 
   def entity

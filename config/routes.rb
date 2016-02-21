@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   # Serve websocket cable requests in-process
   # mount ActionCable.server => '/cable'
 
-  post '/tags' => "tags#create"
+  post '/tags/:entity_type/:entity_id' => "tags#create"
+  delete '/tags/:entity_type/:entity_id' => "tags#destroy"
 end
